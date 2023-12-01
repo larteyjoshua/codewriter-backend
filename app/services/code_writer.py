@@ -31,13 +31,14 @@ async def model_listing():
 
 async def image_generating(request_parameter: ImageRequestInput):
     client = OpenAI(api_key=settings.OPENAI_API_KEY)
-    logger.info('Image Generation Function Call')
+    logger.info('Image Generation Function Call with Parameters')
+    logger.info(request_parameter)
     response = client.images.generate(
-  model=settings.IMAGE_MODEL,
+  model=request_parameter.model,
   prompt=request_parameter.prompt,
-  size=settings.IMAGE_SIZE,
-  quality=settings.IMAGE_QUALITY,
-  n=settings.NUMBER_IMAGE,
+  size=request_parameter.size,
+  quality=request_parameter.quality,
+  n=request_parameter.n,
 )
     logger.info(response)
     image_url = response.data[0].url

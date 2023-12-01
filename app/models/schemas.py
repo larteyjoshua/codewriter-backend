@@ -6,6 +6,10 @@ class RequestInput(BaseModel):
       
 class ImageRequestInput(BaseModel):
     prompt: str
+    model: str
+    quality:str
+    size:str
+    n:int
 
     
    
