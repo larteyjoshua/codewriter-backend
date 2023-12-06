@@ -17,7 +17,6 @@ async def code_writing(request_object: RequestInput):
     logger.info(response)
 
     new_response = response.choices[0].message.content
-    sleep(60)
     return new_response
 
 
