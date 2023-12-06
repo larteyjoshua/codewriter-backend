@@ -14,7 +14,7 @@ async def code_writing(request_object: RequestInput):
         messages=request_object.message,
         temperature=request_object.temperature,
     )
-    logger.info(response)
+    logger.info("Api Call Success")
 
     new_response = response.choices[0].message.content
     return new_response
@@ -24,7 +24,7 @@ async def model_listing():
     logger.info('Model Listing Call')
     client = OpenAI(api_key=settings.OPENAI_API_KEY)
     response = client.models.list()
-    logger.info(response)
+    logger.info("Api Call Success")
     return response
 
 async def image_generating(request_parameter: ImageRequestInput):
@@ -38,7 +38,7 @@ async def image_generating(request_parameter: ImageRequestInput):
   quality=request_parameter.quality,
   n=request_parameter.n,
 )
-    logger.info(response)
+    logger.info("Api Call Success")
     image_url = response.data[0].url
     revised_prompt = response.data[0].revised_prompt
     result = {
