@@ -9,12 +9,9 @@ async def code_writing(request_object: RequestInput):
     client = OpenAI(api_key=settings.OPENAI_API_KEY)
     logger.info('Writing Code Function Call')
     response = client.chat.completions.create(
-        model=settings.TEXT_MODEL,
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": request_object.prompt},
-        ],
-        temperature=settings.TEMPERATURE,
+        model=request_object.model,
+        messages=request_object.message,
+        temperature=request_object.temperature,
     )
     logger.info(response)
 
