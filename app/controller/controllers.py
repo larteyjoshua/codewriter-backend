@@ -15,3 +15,7 @@ async def generate_code(parameter: schemas.RequestInput):
 @router.post("/generate-image")
 async def generate_image(parameter: schemas.ImageRequestInput):
     return await code_writer.image_generating(parameter)
+
+@router.get("/hello")
+async def hello_world():
+    return {"data": "Hello World From Code Writer"}
