@@ -1,15 +1,17 @@
+from anyio import sleep
 from fastapi import APIRouter
 from app.services import code_writer
 from app.models import schemas
 router = APIRouter(prefix="/v1")
 
 
-@router.get("/models",)
+@router.get("/models")
 async def list_models():
     return await code_writer.model_listing()
 
 @router.post("/generate-code")
 async def generate_code(parameter: schemas.RequestInput):
+    await sleep(60)
     return await code_writer.code_writing(parameter)
 
 @router.post("/generate-image")

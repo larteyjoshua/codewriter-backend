@@ -16,6 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 def hello_world():
     return {"Hello": "World"}
