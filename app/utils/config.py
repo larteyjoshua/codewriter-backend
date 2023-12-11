@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     TEMPERATURE: float = os.environ.get("TEMPERATURE")
     NUMBER_IMAGE: int = os.environ.get("NUMBER_IMAGE")
     IMAGE_QUALITY: str = os.environ.get("IMAGE_QUALITY")
+    SECURITY_CODE: str = os.environ.get("SECURITY_CODE")
     
 
     class Config:
