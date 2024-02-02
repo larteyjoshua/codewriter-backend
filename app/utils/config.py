@@ -20,6 +20,9 @@ class Settings(BaseSettings):
     NUMBER_IMAGE: int = os.environ.get("NUMBER_IMAGE")
     IMAGE_QUALITY: str = os.environ.get("IMAGE_QUALITY")
     SECURITY_CODE: str = os.environ.get("SECURITY_CODE")
+    AWS_ACCESS_KEY_ID: str = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY: str = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    REGION_NAME: str = os.environ.get("REGION_NAME")
     
 
     class Config:

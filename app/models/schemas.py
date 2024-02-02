@@ -16,3 +16,9 @@ class ImageRequestInput(BaseModel):
     quality: str
     size: str
     n: int
+
+
+class ClaudeRequestInput(BaseModel):
+    prompt:str
+    model: str
+    temperature: float

@@ -20,3 +20,9 @@ async def generate_image(parameter: schemas.ImageRequestInput,  x_session_code: 
 @router.get("/hello")
 async def hello_world():
     return {"data": "Hello World From Code Writer"}
+
+
+
+@router.post("/generate-code-bedrock")
+async def generate_code(parameter: schemas.ClaudeRequestInput,  x_session_code: str = Depends(get_session_code)):
+    return await code_writer.code_writer_bedrock(parameter)

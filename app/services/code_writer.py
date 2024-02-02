@@ -1,9 +1,11 @@
 from time import sleep
 from openai import OpenAI
 from app.utils.config import settings
-from app.models.schemas import RequestInput
+from app.models.schemas import RequestInput, ClaudeRequestInput
 from loguru import logger
 from app.models.schemas import ImageRequestInput
+import anthropic_bedrock
+from anthropic_bedrock import AsyncAnthropicBedrock
 
 
 async def code_writing(request_object: RequestInput):
@@ -46,6 +48,24 @@ async def image_generating(request_parameter: ImageRequestInput):
         'prompt':revised_prompt
     }
     return result
+
+async def code_writer_bedrock(request_object: ClaudeRequestInput):
+
+
+    client = AsyncAnthropicBedrock(
+    aws_access_key=settings.AWS_ACCESS_KEY_ID,
+    aws_secret_key=settings.AWS_SECRET_ACCESS_KEY,
+    aws_region=settings.REGION_NAME,
+)
+
+    completion = await client.completions.create(
+    model=request_object.model,
+    max_tokens_to_sample=4000,
+    prompt=f"{anthropic_bedrock.HUMAN_PROMPT} {request_object.prompt} {anthropic_bedrock.AI_PROMPT}",
+)
+    response = completion.completion
+    logger.info(response)
+    return response
 
 
 
